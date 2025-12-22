@@ -1,9 +1,17 @@
 !#/bin/bash
 
+# THIS SCRIPT IS MEANT TO HELP SETUP MY DEVELOPER ENVIRONMENT
+# OS: FEDORA WORKSTATION 43
+# ARCH: x86
+
+
 ### Basic Setups ###
 sudo dnf update -y
 sudo dnf install @development-tools -y
 sudo dnf install @cosmic-desktop-environment -y
+
+# Golang
+sudo dnf install golang -y
 
 # 7zip
 sudo dnf install p7zip p7zip-plugins -y
@@ -51,7 +59,7 @@ tar -xvf lazydocker_0.24.3_Linux_x86_64.tar.gz
 rm lazydocker_0.24.3_Linux_x86_64.tar.gz
 
 
-### JAVA ###
+### JAVA 21 ###
 cd ~
 wget -P ~/java/ https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-x64_bin.tar.gz
 cd ~/java
@@ -144,3 +152,9 @@ flatpak install flathub com.slack.Slack
 
 ### Chrome ###
 flatpak install flathub org.chromium.Chromium
+
+
+
+### Neovim Basic Plugins ###
+nvim --headless -c ":TSInstall c angular bash cmake css dockerfile dot gitignore go java javascript json lua make markdown nginx php python toml tsx typescript yaml vue" -c ":q"
+nvim --headless -c ":MasonInstall svelte-language-server vue-language-server yaml-language-server angular-language-server cpplint cpptools css-lsp docker-language-server dockerfile-language-server gh-actions-language-server gopls go-debug-adapter jsonlint lua-language-server nginx-language-server nxls pyright" -c ":q"
