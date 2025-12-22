@@ -1,7 +1,7 @@
 !#/bin/bash
 
 # THIS SCRIPT IS MEANT TO HELP SETUP MY DEVELOPER ENVIRONMENT
-# OS: FEDORA WORKSTATION 43
+# OS: FEDORA 43
 # ARCH: x86
 
 
@@ -9,6 +9,7 @@
 sudo dnf update -y
 sudo dnf install @development-tools -y
 sudo dnf install @cosmic-desktop-environment -y
+sudo dnf install akmod-nvidia -y
 
 # Golang
 sudo dnf install golang -y
