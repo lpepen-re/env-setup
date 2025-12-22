@@ -36,7 +36,7 @@ cd ~
 
 sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
 
-sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 sudo systemctl enable --now docker
 
@@ -78,8 +78,8 @@ cd ~
 wget -P ~/jetbrains-toolbox/  https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-3.2.0.65851.tar.gz
 cd ~/jetbrains-toolbox
 tar -xvf jetbrains-toolbox-3.2.0.65851.tar.gz 
-cd ~/jetbrains-toolbox/jetbrains-toolbox-3.2.0.65851/bin
-./jetbrains-toolbox
+rm jetbrains-toolbox-3.2.0.65851.tar.gz 
+
 
 
 ### Node Version Manager ###
@@ -92,8 +92,15 @@ git checkout v0.40.3
 
 
 ### PYENV ###
+sudo dnf install -y make gcc gcc-c++ zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz-devel libffi-devel ncurses-devel tk-devel tcl-devel gdbm-devel libuuid-devel
+
 curl -fsSL https://pyenv.run | bash
 
+sudo dnf install bzip2-devel -y
+
+
+
+### EDIT BASH SCRIPT ###
 echo 'alias lzd="lazydocker"' >> ~/.bashrc
 echo 'export LAZYDOCKER=/home/lpepen/lazydocker' >> ~/.bashrc
 echo 'export JAVA_HOME=/home/lpepen/java/jdk-21.0.2' >> ~/.bashrc
@@ -104,13 +111,24 @@ echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm' >> ~/.bashrc
 echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion' >> ~/.bashrc
 
+
+
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init - bash)"' >> ~/.bashrc
+
+
 ### RRC Project Specifics ###
 
 cd ~
+source ~/.bashrc
+
+nvm install --lts
+
 source ~/.bashrc
 
 npm install --global @angular/cli
 npm install --global nx
 npm install pnpm@8.15.9 -g
 
-pyenv install 3.11
+pyenv install 3.11.14
