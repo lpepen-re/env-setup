@@ -207,6 +207,7 @@ echo "Installing Chromium..."
 flatpak install flathub org.chromium.Chromium -y
 
 
+
 ### Neovim Basic Plugins ###
 echo "Configuring Neovim..."
 nvim --headless -c ":TSInstall c angular bash cmake css dockerfile dot gitignore go java javascript json lua make markdown nginx php python toml tsx typescript yaml vue" -c ":q"
